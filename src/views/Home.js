@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router';
 import mockData from '../mock/mockImages';
 
 export default class Home extends Component {
+
   render() {
     return (
       <div className="container text-center">
