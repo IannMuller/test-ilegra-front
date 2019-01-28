@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import './Details.css';
 
 export default class Releases extends Component {
 
   constructor(props) {
     super(props);
     this.getCharactersName = this.getCharactersName.bind(this);
+    this.charactersList = this.charactersList.bind(this);
 
     this.state = {
       characters: [],
@@ -19,6 +21,7 @@ export default class Releases extends Component {
       starships: [],
       species: [],
       vehicles: [],
+      loading: true,
     }
   }
 
@@ -36,51 +39,53 @@ export default class Releases extends Component {
     const { characters } = this.state;
 
     const charactersName = await Promise.all(
-      characters.map(async (character, index) => {
+      characters.map(async (character) => {
         const rawData = await axios.get(character);
         return (rawData.data.name);
       })
     );
-    this.setState({ charactersName })
+    this.setState({ charactersName });
+    this.setState({ loading: false });
   }
 
+  charactersList() {
+    if (this.state.loading)
+      return (
+        <div>
+          <a>Carregando Infos...</a>
+        </div>
+      )
+    return (
+      <ul className="list-group">
+        {
+          this.state.charactersName.map((character, index) => (
+            <li key={index} className="list-group-item">{character}</li>
+          ))
+        }
+      </ul>
+    )
+  }
 
   render() {
     const { director,
       title,
       release_date,
       episode_id,
-      producer,
-      charactersName
+      producer      
     } = this.state
     return (
-      <div className="container text-center">
+      <div className="container div">
+        <a>Detalhes:</a>
         <ul className="list-group">
           <li className="list-group-item">Titulo original: {title}</li>
           <li className="list-group-item">Diretor: {director}</li>
-          <li className="list-group-item">produtor: {producer}</li>
+          <li className="list-group-item">Produtor: {producer}</li>
           <li className="list-group-item">Data de lançamento: {release_date}</li>
-          <li className="list-group-item">ordem cronologica: {episode_id}</li>
+          <li className="list-group-item">Ordem cronológica: {episode_id}</li>
         </ul>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Personagens</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              charactersName.map((character, index): Node => (
-                <tr key={index}>
-                  <td>{character}</td>
-                </tr>
-              ))
-            }           
-          </tbody>
-        </table>
+        <a>Personagens:</a>
+        {this.charactersList()}
       </div>
-
-
     );
   };
 }
