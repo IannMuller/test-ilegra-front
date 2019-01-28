@@ -10,38 +10,31 @@ export default class Home extends Component {
       <div className="container text-center">
         <div className="row">
           <Card
-            idMovie={mockData[0].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[0].slug}`)}
             img={mockData[0].img}
           />
           <Card
-            idMovie={mockData[1].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[1].slug}`)}
             img={mockData[1].img}
           />
           <Card
-            idMovie={mockData[2].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[2].slug}`)}
             img={mockData[2].img}
           />
           <Card
-            idMovie={mockData[3].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[3].slug}`)}
             img={mockData[3].img}
           />
           <Card
-            idMovie={mockData[4].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[4].slug}`)}
             img={mockData[4].img}
           />
           <Card
-            idMovie={mockData[5].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[5].slug}`)}
             img={mockData[5].img}
           />
           <Card
-            idMovie={mockData[6].slug}
-            action={() => hashHistory.push('/details')}
+            action={() => hashHistory.push(`/details?idMovie=${mockData[6].slug}`)}
             img={mockData[6].img}
           />
         </div>
